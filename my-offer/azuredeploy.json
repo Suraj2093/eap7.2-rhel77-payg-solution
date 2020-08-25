@@ -9,22 +9,7 @@
                 "description": "Location for all resources"
             }
         },
-        "plan": {
-            "allowedValues": [
-                "JBoss-EAP7.2-on-RHEL7.7-BYOS",
-                "JBoss-EAP7.2-on-RHEL7.7-PAYG",
-                "JBoss-EAP7.2-on-RHEL8.0-BYOS",
-                "JBoss-EAP7.2-on-RHEL8.0-PAYG",
-                "JBoss-EAP7.3-on RHEL8.0-BYOS",
-                "JBoss-EAP7.3-on-RHEL8.0-PAYG"
-            ],
-            "type": "String",
-            "metadata": {
-                "description": "Version of JBoss EAP on RHEL you want to deploy"
-            }
-        },
         "vmName": {
-            "defaultValue": "jbosseap-server",
             "type": "String",
             "metadata": {
                 "description": "Name for the Virtual Machine."
@@ -202,25 +187,22 @@
             "type": "string",
             "metadata": {
                 "description": "User name for RedHat subscription Manager"
-            },
-            "defaultValue": ""
+            }
         },
         "rhsmPassword": {
             "type": "securestring",
             "metadata": {
                 "description": "Password for RedHat subscription Manager"
-            },
-            "defaultValue": ""
+            }
         },
         "rhsmPoolEAP": {
             "type": "string",
             "metadata": {
                 "description": "RedHat Subscription Manager Pool ID (Should have EAP entitlement)"
-            },
-            "defaultValue": ""
+            }
         },
         "_artifactsLocation": {
-            "defaultValue": "https://raw.githubusercontent.com/Suraj2093/eap-rhel-solution/master/my-offer/",
+            "defaultValue": "https://raw.githubusercontent.com/Suraj2093/eap7.2-rhel77-payg-solution/master/my-offer/",
             "type": "String",
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated"
@@ -238,19 +220,10 @@
         "singlequote": "'",
         "nicName": "[concat(uniquestring(resourceGroup().id), '-nic')]",
         "networkSecurityGroupName": "jbosseap-nsg",
-        "scriptFolder": "scripts",
-        "scriptFileName": "eap-adduser.sh",
         "bootdiagnosticscheck": "[and(equals(parameters('storageNewOrExisting'), 'new'), equals(parameters('bootDiagnostics'),'On'))]",
         "publicIpAddressId": {
             "id": "[resourceId(parameters('publicIpResourceGroupName'), 'Microsoft.Network/publicIPAddresses', parameters('publicIpName'))]"
         },
-        "userStorageAccountName1": "eap72onrhel7imgdisks",
-        "userStorageAccountName2": "eap72onrhel8imgdisks",
-        "userStorageAccountName3": "eap73onrhel8imgdisks",
-        "userStorageContainerName": "vhds",
-        "osDiskVhdName1": "[concat('http://',variables('userStorageAccountName1'),'.blob.core.windows.net/',variables('userStorageContainerName'),'/',parameters('vmName'),'osDisk.vhd')]",
-        "osDiskVhdName2": "[concat('http://',variables('userStorageAccountName2'),'.blob.core.windows.net/',variables('userStorageContainerName'),'/',parameters('vmName'),'osDisk.vhd')]",
-        "osDiskVhdName3": "[concat('http://',variables('userStorageAccountName3'),'.blob.core.windows.net/',variables('userStorageContainerName'),'/',parameters('vmName'),'osDisk.vhd')]",
         "linuxConfiguration": {
             "disablePasswordAuthentication": true,
             "ssh": {
@@ -261,116 +234,13 @@
                     }
                 ]
             }
-        },
-        "storageProfileBYOS": {
-            "osDisk": {
-                        "name": "[concat(parameters('vmName'),'_OSDisk')]",
-                        "osType": "Linux",
-                        "caching": "ReadWrite",
-                        "createOption": "FromImage",
-                        "image": {
-                            "uri": "[if(equals(parameters('plan'),'JBoss-EAP7.2-on-RHEL7.7-BYOS'), 'https://eap72onrhel7imgdisks.blob.core.windows.net/vhds/rhel77-byos-img-vm20200623224019.vhd', if(equals(parameters('plan'),'JBoss-EAP7.2-on-RHEL8.0-BYOS'), 'https://eap72onrhel8imgdisks.blob.core.windows.net/vhds/rhel8-byos-img-vm20200706134815.vhd', 'https://eap73onrhel8imgdisks.blob.core.windows.net/vhds/rhel8-byos-img-vm120200706163323.vhd'))]"
-                        },
-                        "vhd": {
-                            "uri": "[if(equals(parameters('plan'),'JBoss-EAP7.2-on-RHEL7.7-BYOS'), variables('osDiskVhdName1'), if(equals(parameters('plan'),'JBoss-EAP7.2-on-RHEL8.0-BYOS'), variables('osDiskVhdName2'), variables('osDiskVhdName3')))]"
-                        }
-                    }
-        },
-        "storageProfilePAYG": {
-            "osDisk": {
-                        "name": "[concat(parameters('vmName'),'_OSDisk')]",
-                        "caching": "ReadWrite",
-                        "createOption": "FromImage"    
-                    },
-            "imageReference": {
-                        "publisher": "redhat",
-                        "offer": "rhel",
-                        "sku": "[if(equals(parameters('plan'), 'JBoss-EAP7.2-on-RHEL7.7-PAYG'), '7.7', '8')]",
-                        "version": "latest"
-                    }
-        },
-        "planBYOS": {
-                "name": "[if(equals(parameters('plan'),'JBoss-EAP7.2-on-RHEL7.7-BYOS'), 'rhel-lvm77', 'rhel-lvm8')]",
-                "publisher": "redhat",
-                "product": "rhel-byos"
         }
     },
     "resources": [
         {
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.2-on-RHEL7.7-BYOS')]",
-            "name": "pid-030dd49a-584a-405f-a29a-e760f5d00de3",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.2-on-RHEL7.7-PAYG')]",
             "name": "pid-7ac579ce-8977-4f93-9e78-d68e05e5e2fc",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.2-on-RHEL8.0-BYOS')]",
-            "name": "pid-18daf76a-7eb0-4cbd-8d91-9718bd030db9",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.2-on-RHEL8.0-PAYG')]",
-            "name": "pid-326f8ba8-c94c-4794-94da-3b74b6c2ed98",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.3-on-RHEL8.0-BYOS')]",
-            "name": "pid-0c595e9e-8958-40ce-bf98-c9b029a679f1",
-            "properties": {
-                "mode": "Incremental",
-                "template": {
-                    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-                    "contentVersion": "1.0.0.0",
-                    "resources": []
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2019-05-01",
-            "condition": "[equals(parameters('plan'), 'JBoss-EAP7.3-on-RHEL8.0-PAYG')]",
-            "name": "pid-012216f9-fe90-48bd-bbfe-db84d8799ddd",
             "properties": {
                 "mode": "Incremental",
                 "template": {
@@ -522,7 +392,6 @@
                 "[if(equals(parameters('bootDiagnostics'),'On'), parameters('storageAccountName'), variables('networkSecurityGroupName'))]",
                 "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
             ],
-            "plan": "[if(contains(parameters('plan'), 'BYOS'), variables('planBYOS'), json('null'))]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('vmSize')]"
@@ -533,7 +402,19 @@
                     "adminPassword": "[parameters('adminPasswordOrSSHKey')]",
                     "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
                 },
-                "storageProfile": "[if(contains(parameters('plan'), 'BYOS'), variables('storageProfileBYOS'), variables('storageProfilePAYG'))]",
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "redhat",
+                        "offer": "rhel",
+                        "sku": "7.7",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "name": "[concat(parameters('vmName'),'_OSDisk')]",
+                        "caching": "ReadWrite",
+                        "createOption": "FromImage"    
+                    }
+                },
                 "networkProfile": {
                     "networkInterfaces": [
                         {
@@ -559,9 +440,11 @@
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "fileUris": [
-                        "[concat(parameters('_artifactsLocation'), variables('scriptFolder'), '/', variables('scriptFileName'), parameters('_artifactsLocationSasToken'))]"
-                    ],
-                    "commandToExecute": "[concat('sh eap-adduser.sh',' ',parameters('jbossEAPUserName'),' ',variables('singlequote'),parameters('jbossEAPPassword'),variables('singlequote'),' ',parameters('rhsmUserName'),' ',variables('singlequote'),parameters('rhsmPassword'),variables('singlequote'),' ', parameters('rhsmPoolEAP'),' ', parameters('plan'),' ')]"
+                        "[uri(parameters('_artifactsLocation'), concat('scripts/jbosseap-setup-redhat.sh', parameters('_artifactsLocationSasToken')))]"
+                    ]
+                },
+                "protectedSettings": {
+                    "commandToExecute": "[concat('sh jbosseap-setup-redhat.sh',' ',parameters('jbossEAPUserName'),' ',variables('singlequote'),parameters('jbossEAPPassword'),variables('singlequote'),' ',parameters('rhsmUserName'),' ',variables('singlequote'),parameters('rhsmPassword'),variables('singlequote'),' ', parameters('rhsmPoolEAP'))]"
                 }
             }
         }

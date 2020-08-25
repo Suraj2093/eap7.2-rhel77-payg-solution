@@ -5,47 +5,10 @@
     "parameters": {
         "basics": [
             {
-                "name": "plan",
-                "type": "Microsoft.Common.DropDown",
-                "label": "Plan",
-                "toolTip": "Version of JBoss EAP on RHEL you want to deploy",
-                "constraints": {
-                  "allowedValues": [
-                    {
-                      "label": "JBoss EAP7.2 on RHEL7.7 BYOS",
-                      "value": "JBoss-EAP7.2-on-RHEL7.7-BYOS"
-                    },
-                    {
-                      "label": "JBoss EAP7.2 on RHEL7.7 PAYG",
-                      "value": "JBoss-EAP7.2-on-RHEL7.7-PAYG"
-                    },
-                    {
-                      "label": "JBoss EAP7.2 on RHEL8.0 BYOS",
-                      "value": "JBoss-EAP7.2-on-RHEL8.0-BYOS"
-                    },
-                    {
-                      "label": "JBoss EAP7.2 on RHEL8.0 PAYG",
-                      "value": "JBoss-EAP7.2-on-RHEL8.0-PAYG"
-                    },
-                    {
-                      "label": "JBoss EAP7.3 on RHEL8.0 BYOS",
-                      "value": "JBoss-EAP7.3-on RHEL8.0-BYOS"
-                    },
-                    {
-                      "label": "JBoss EAP7.3 on RHEL8.0 PAYG",
-                      "value": "JBoss-EAP7.3-on RHEL8.0-PAYG"
-                    }
-                  ],
-                  "required": true
-                },
-                "visible": true
-            },
-            {
                 "name": "vmName",
                 "type": "Microsoft.Common.TextBox",
                 "label": "Virtual Machine name",
-                "toolTip": "The name of the Virtual Machine.",
-                "defaultValue": "jbosseap-server",
+                "toolTip": "The name of the Virtual Machine",
                 "constraints": {
                     "required": true,
                     "regex": "^[a-z0-9A-Z-]{3,79}$",
@@ -206,7 +169,6 @@
                             "name": "[concat(take(replace(basics('vmName'), '-', ''), 8), take(replace(guid(), '-', ''), 10))]"
                         },
                         "constraints": {
-                            "regex": "[concat('^jdbc:', coalesce(steps('VirtualMachineConfig').storageAccountType, ''), '.*$')]",
                             "allowedTypes": [
                                 "Standard_LRS",
                                 "Standard_GRS"
@@ -255,7 +217,6 @@
                         "type": "Microsoft.Compute.UserNameTextBox",
                         "label": "RedHat Subscription Manager username",
                         "osPlatform": "Linux",
-                        "visible": "[contains(basics('plan'), 'PAYG')]",
                         "constraints": {
                             "required": true
                         },
@@ -268,7 +229,7 @@
                             "password": "RedHat Subscription Manager password",
                             "confirmPassword": "Confirm password"
                         },
-                        "visible": "[contains(basics('plan'), 'PAYG')]",
+                        "visible": true,
                         "toolTip":"Provide Password for  RedHat subscription Manager",
                         "options": {
                             "hideConfirmation": false
@@ -284,8 +245,7 @@
                         "toolTip": "RedHat Subscription Manager Pool ID (Should have EAP entitlement)",
                         "constraints": {
                             "required": true
-                        },
-                        "visible": "[contains(basics('plan'), 'PAYG')]"
+                        }
                     }
                 ]
             }
@@ -293,7 +253,6 @@
         "outputs": {
 
             "location": "[location()]",
-            "plan": "[basics('plan')]",
             "vmName": "[basics('vmName')]",
             "adminUsername": "[basics('adminUsername')]",
             "authenticationType": "[basics('authenticationType').authenticationType]",
