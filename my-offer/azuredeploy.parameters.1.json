@@ -1,9 +1,9 @@
 {
   "location": {
-    "value": "eastus2"
+    "value": "southcentralus"
   },
   "vmName": {
-    "value": "jbosseap-rhel77-payg-vm1"
+    "value": "jbosseap-rhel77-payg-vm2"
   },
   "adminUsername": {
     "value": "demouser"
@@ -25,29 +25,29 @@
   },
   "addressPrefixes": {
     "value": [
-      "10.0.0.0/16"
+      "10.4.0.0/16"
     ]
   },
   "subnetName": {
     "value": "Subnet-1"
   },
   "subnetPrefix": {
-    "value": "10.0.0.0/24"
+    "value": "10.4.0.0/24"
   },
   "virtualNetworkResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
+    "value": "EAP72-RHEL7-payg-Soln-Test-Rg3"
   },
   "publicIpNewOrExisting": {
     "value": "new"
   },
   "publicIpName": {
-    "value": "jbosseap-rhel77-payg-vm1-ip"
+    "value": "jbosseap-rhel77-payg-vm2-ip"
   },
   "publicIpDns": {
-    "value": "jbosseap-rhel77-payg-vm1-638590b5f6"
+    "value": "jbosseap-rhel77-payg-vm2-166e61fcc5"
   },
   "publicIpResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
+    "value": "EAP72-RHEL7-payg-Soln-Test-Rg3"
   },
   "publicIPAllocationMethod": {
     "value": "Dynamic"
@@ -59,7 +59,7 @@
     "value": "new"
   },
   "storageAccountName": {
-    "value": "jbosseapdef494d1f5"
+    "value": "testdhfnw"
   },
   "storageAccountType": {
     "value": "Standard_LRS"
