@@ -1,12 +1,9 @@
 {
   "location": {
-    "value": "eastus"
-  },
-  "plan": {
-    "value": "JBoss-EAP7.2-on-RHEL7.7-BYOS"
+    "value": "eastus2"
   },
   "vmName": {
-    "value": "jbosseap-server1-byos-rhel77"
+    "value": "jbosseap-rhel77-payg-vm1"
   },
   "adminUsername": {
     "value": "demouser"
@@ -38,19 +35,19 @@
     "value": "10.0.0.0/24"
   },
   "virtualNetworkResourceGroupName": {
-    "value": "EAP72-RHEL77-BYOS-soln-RG1"
+    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
   },
   "publicIpNewOrExisting": {
     "value": "new"
   },
   "publicIpName": {
-    "value": "jbosseap-server1-byos-rhel77-ip"
+    "value": "jbosseap-rhel77-payg-vm1-ip"
   },
   "publicIpDns": {
-    "value": "jbosseap-server1-byos-rhel77-aa5010ff1a"
+    "value": "jbosseap-rhel77-payg-vm1-638590b5f6"
   },
   "publicIpResourceGroupName": {
-    "value": "EAP72-RHEL77-BYOS-soln-RG1"
+    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
   },
   "publicIPAllocationMethod": {
     "value": "Dynamic"
@@ -62,7 +59,7 @@
     "value": "new"
   },
   "storageAccountName": {
-    "value": "jbosseapf766f7cebb"
+    "value": "jbosseapdef494d1f5"
   },
   "storageAccountType": {
     "value": "Standard_LRS"
@@ -72,5 +69,14 @@
   },
   "jbossEAPPassword": {
     "value": "demoPassword1!"
+  },
+  "rhsmUserName": {
+    "value": "surajpaispektra"
+  },
+  "rhsmPassword": {
+    "value": "Spektra@123"
+  },
+  "rhsmPoolEAP": {
+    "value": "8a85f99972762fce017299694421706b"
   }
 }
