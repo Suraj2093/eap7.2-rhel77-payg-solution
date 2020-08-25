@@ -1,0 +1,85 @@
+{
+  "location": {
+    "value": "centralus"
+  },
+  "plan": {
+    "value": "JBoss-EAP7.2-on-RHEL8.0-PAYG"
+  },
+  "vmName": {
+    "value": "jbosseap-server1-payg-rhel8"
+  },
+  "adminUsername": {
+    "value": "demouser"
+  },
+  "authenticationType": {
+    "value": "password"
+  },
+  "adminPasswordOrSSHKey": {
+    "value": "demoPassword1!"
+  },
+  "vmSize": {
+    "value": "Standard_DS2_v2"
+  },
+  "virtualNetworkNewOrExisting": {
+    "value": "new"
+  },
+  "virtualNetworkName": {
+    "value": "VirtualNetwork"
+  },
+  "addressPrefixes": {
+    "value": [
+      "10.4.0.0/16"
+    ]
+  },
+  "subnetName": {
+    "value": "Subnet-1"
+  },
+  "subnetPrefix": {
+    "value": "10.4.0.0/24"
+  },
+  "virtualNetworkResourceGroupName": {
+    "value": "EAP72-RHEL8-PAYG-soln-RG1"
+  },
+  "publicIpNewOrExisting": {
+    "value": "new"
+  },
+  "publicIpName": {
+    "value": "jbosseap-server1-payg-rhel8-ip"
+  },
+  "publicIpDns": {
+    "value": "jbosseap-server1-payg-rhel8-c4db81dbcc"
+  },
+  "publicIpResourceGroupName": {
+    "value": "EAP72-RHEL8-PAYG-soln-RG1"
+  },
+  "publicIPAllocationMethod": {
+    "value": "Dynamic"
+  },
+  "bootDiagnostics": {
+    "value": "On"
+  },
+  "storageNewOrExisting": {
+    "value": "new"
+  },
+  "storageAccountName": {
+    "value": "jbosseapa2fc6c7460"
+  },
+  "storageAccountType": {
+    "value": "Standard_LRS"
+  },
+  "jbossEAPUserName": {
+    "value": "demouser1"
+  },
+  "jbossEAPPassword": {
+    "value": "demoPassword1!"
+  },
+  "rhsmUserName": {
+    "value": "surajpaispektra"
+  },
+  "rhsmPassword": {
+    "value": "Spektra@123"
+  },
+  "rhsmPoolEAP": {
+    "value": "8a85f99972762fce017299694421706b"
+  }
+}

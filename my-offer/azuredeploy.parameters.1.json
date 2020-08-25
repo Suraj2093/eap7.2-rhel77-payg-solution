@@ -1,0 +1,76 @@
+{
+  "location": {
+    "value": "eastus"
+  },
+  "plan": {
+    "value": "JBoss-EAP7.2-on-RHEL7.7-BYOS"
+  },
+  "vmName": {
+    "value": "jbosseap-server1-byos-rhel77"
+  },
+  "adminUsername": {
+    "value": "demouser"
+  },
+  "authenticationType": {
+    "value": "password"
+  },
+  "adminPasswordOrSSHKey": {
+    "value": "demoPassword1!"
+  },
+  "vmSize": {
+    "value": "Standard_DS2_v2"
+  },
+  "virtualNetworkNewOrExisting": {
+    "value": "new"
+  },
+  "virtualNetworkName": {
+    "value": "VirtualNetwork"
+  },
+  "addressPrefixes": {
+    "value": [
+      "10.0.0.0/16"
+    ]
+  },
+  "subnetName": {
+    "value": "Subnet-1"
+  },
+  "subnetPrefix": {
+    "value": "10.0.0.0/24"
+  },
+  "virtualNetworkResourceGroupName": {
+    "value": "EAP72-RHEL77-BYOS-soln-RG1"
+  },
+  "publicIpNewOrExisting": {
+    "value": "new"
+  },
+  "publicIpName": {
+    "value": "jbosseap-server1-byos-rhel77-ip"
+  },
+  "publicIpDns": {
+    "value": "jbosseap-server1-byos-rhel77-aa5010ff1a"
+  },
+  "publicIpResourceGroupName": {
+    "value": "EAP72-RHEL77-BYOS-soln-RG1"
+  },
+  "publicIPAllocationMethod": {
+    "value": "Dynamic"
+  },
+  "bootDiagnostics": {
+    "value": "On"
+  },
+  "storageNewOrExisting": {
+    "value": "new"
+  },
+  "storageAccountName": {
+    "value": "jbosseapf766f7cebb"
+  },
+  "storageAccountType": {
+    "value": "Standard_LRS"
+  },
+  "jbossEAPUserName": {
+    "value": "demouser1"
+  },
+  "jbossEAPPassword": {
+    "value": "demoPassword1!"
+  }
+}
