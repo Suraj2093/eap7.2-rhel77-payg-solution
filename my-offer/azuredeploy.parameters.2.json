@@ -1,9 +1,9 @@
 {
   "location": {
-    "value": "westus2"
+    "value": "eastus"
   },
   "vmName": {
-    "value": "jbosseap-rhel77-payg-vm2"
+    "value": "jbosseap-rhel77-payg-vm4"
   },
   "adminUsername": {
     "value": "demouser"
@@ -15,7 +15,7 @@
     "value": "demoPassword1!"
   },
   "vmSize": {
-    "value": "Standard_D1_v2"
+    "value": "Standard_DS2_v2"
   },
   "virtualNetworkNewOrExisting": {
     "value": "new"
@@ -25,35 +25,47 @@
   },
   "addressPrefixes": {
     "value": [
-      "10.3.0.0/16"
+      "10.5.0.0/16"
     ]
   },
   "subnetName": {
-    "value": "Subnet-1"
+    "value": "Subnet1-rhel77"
   },
   "subnetPrefix": {
-    "value": "10.3.0.0/24"
+    "value": "10.5.0.0/24"
   },
   "virtualNetworkResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg2"
+    "value": "EAP72-RHEL7-payg-Soln-Test-Rg4"
   },
   "publicIpNewOrExisting": {
-    "value": "new"
+    "value": "existing"
   },
   "publicIpName": {
-    "value": "jbosseap-rhel77-payg-vm2-ip"
+    "value": "rhel77-pip1"
   },
   "publicIpDns": {
-    "value": "jbosseap-rhel77-payg-vm2-47c3bb29f2"
+    "value": "rhel77-pip1"
   },
   "publicIpResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg2"
+    "value": "PIP-test-rg1"
   },
   "publicIPAllocationMethod": {
     "value": "Dynamic"
   },
+  "publicIpSku": {
+    "value": "Basic"
+  },
   "bootDiagnostics": {
-    "value": "Off"
+    "value": "On"
+  },
+  "storageNewOrExisting": {
+    "value": "existing"
+  },
+  "storageAccountName": {
+    "value": "eaprheldiagstrg"
+  },
+  "storageAccountType": {
+    "value": "Standard_LRS"
   },
   "jbossEAPUserName": {
     "value": "demouser1"
