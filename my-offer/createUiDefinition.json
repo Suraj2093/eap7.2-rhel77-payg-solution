@@ -216,7 +216,6 @@
                         "name": "rhsmUserName",
                         "type": "Microsoft.Common.TextBox",
                         "label": "RedHat Subscription Manager username",
-                        "osPlatform": "Linux",
                         "constraints": {
                             "required": true,
                             "regex": "^(?=.{5,45}$).*",
