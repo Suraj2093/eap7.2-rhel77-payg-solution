@@ -1,9 +1,9 @@
 {
   "location": {
-    "value": "eastus"
+    "value": "westus"
   },
   "vmName": {
-    "value": "EAP72-RHEL7-payg-soln-VM1"
+    "value": "EAP72-RHEL7-payg-Soln-VM11"
   },
   "adminUsername": {
     "value": "demouser"
@@ -15,42 +15,45 @@
     "value": "demoPassword1!"
   },
   "vmSize": {
-    "value": "Standard_DS2_v2"
+    "value": "Standard_F8s_v2"
   },
   "virtualNetworkNewOrExisting": {
-    "value": "new"
+    "value": "existing"
   },
   "virtualNetworkName": {
-    "value": "VirtualNetwork"
+    "value": "EXT-VNET1"
   },
   "addressPrefixes": {
     "value": [
-      "10.4.0.0/16"
+      "10.3.0.0/16"
     ]
   },
   "subnetName": {
-    "value": "Subnet-1"
+    "value": "EXT-subnet-Rg1"
   },
   "subnetPrefix": {
-    "value": "10.4.0.0/24"
+    "value": "10.3.0.0/24"
   },
   "virtualNetworkResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
+    "value": "EXt-Resource-Rg1"
   },
-  "publicIpNewOrExisting": {
-    "value": "new"
+  "publicIpNewOrExistingOrNone": {
+    "value": "none"
   },
   "publicIpName": {
-    "value": "EAP72-RHEL7-payg-soln-VM1-ip"
+    "value": ""
   },
   "publicIpDns": {
-    "value": "eap72-rhel7-payg-soln-vm1-93254ab940"
+    "value": ""
   },
   "publicIpResourceGroupName": {
-    "value": "EAP72-RHEL7-payg-Soln-Test-Rg1"
+    "value": ""
   },
   "publicIPAllocationMethod": {
-    "value": "Dynamic"
+    "value": ""
+  },
+  "publicIpSku": {
+    "value": ""
   },
   "bootDiagnostics": {
     "value": "On"
@@ -59,24 +62,27 @@
     "value": "new"
   },
   "storageAccountName": {
-    "value": "eap72rhe25f7e55cfe"
+    "value": "diageap72rhel7v2strggrs"
   },
   "storageAccountType": {
-    "value": "Standard_LRS"
+    "value": "Standard_GRS"
+  },
+  "storageAccountKind": {
+    "value": "StorageV2"
   },
   "jbossEAPUserName": {
     "value": "demouser1"
   },
   "jbossEAPPassword": {
-    "value": "demoPassword1&"
+    "value": "demoPassword1!"
   },
   "rhsmUserName": {
-    "value": "Suraj@ss.com"
+    "value": "surajpaispektra"
   },
   "rhsmPassword": {
-    "value": "Spektra@123&"
+    "value": "Spektra@123"
   },
   "rhsmPoolEAP": {
-    "value": "8a85f99974d1005001751c968ffc1dc7"
+    "value": "8a85f99974d1005001750c5a64e62c81"
   }
 }
